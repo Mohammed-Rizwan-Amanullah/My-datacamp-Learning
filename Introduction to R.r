@@ -503,4 +503,41 @@ Female   Male
 
 
 ## Ordered Factors
-####
+# When dealing with factors having natural order, we need to mention them.
+# To create an ordered factor,
+# - you have to add two additional arguments: ordered and levels
+#factor(some_vector,
+#       ordered = TRUE,
+#       levels = c("lev1", "lev2" ...))
+
+speed_vector <- c("medium", "slow", "slow", "medium", "fast")
+
+# Convert speed_vector to ordered factor vector
+factor_speed_vector <- factor(speed_vector,
+                             ordered=TRUE,
+                             levels= c("slow", "medium", "fast")
+                             )
+
+# Print factor_speed_vector
+factor_speed_vector
+summary(factor_speed_vector)
+
+slow medium   fast
+     2      2      1
+
+#comparing ordered factors
+# comparing speed of second element with the fifth element
+
+speed_vector <- c("medium", "slow", "slow", "medium", "fast")
+factor_speed_vector <- factor(speed_vector,
+                              ordered = TRUE,
+                              levels = c("slow", "medium", "fast"))
+
+# Factor value for second data analyst
+da2 <- factor_speed_vector[2]
+
+# Factor value for fifth data analyst
+da5 <- factor_speed_vector[5]
+
+# Is data analyst 2 faster than data analyst 5?
+da2 > da5
