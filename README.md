@@ -1,2 +1,2 @@
 # My-datacamp-Learning
-This repository hold the files that i have created from the learning platform DataCampp
+This repository holds exercise files and notes that I took as part of my learning in datacamp learning platform.
