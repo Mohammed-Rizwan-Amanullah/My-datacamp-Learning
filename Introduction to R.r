@@ -503,6 +503,4 @@ Female   Male
 
 
 ## Ordered Factors
-
-
-
+####
