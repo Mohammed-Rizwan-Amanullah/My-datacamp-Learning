@@ -541,3 +541,279 @@ da5 <- factor_speed_vector[5]
 
 # Is data analyst 2 faster than data analyst 5?
 da2 > da5
+
+# ------------------ DATA FRAME ------------------------
+#A data frame has the variables of a data set as columns and the observations as rows.
+# the function head() enables you to show the first observations of a data frame.
+#The function tail() prints out the last observations in your data set.
+
+# Call head() on mtcars
+head(mtcars)
+
+#The function str() shows you the structure of your data set
+#Applying the str() function will often be the first thing
+#that you do when receiving a new data set or data frame
+
+## Creating a data frame
+# data.frame() fucntion is used to create a data frame
+# vectors are passed as arguments and it becomes the column of df
+# Vectors should be of same length
+
+# Definition of vectors
+name <- c("Mercury", "Venus", "Earth",
+          "Mars", "Jupiter", "Saturn",
+          "Uranus", "Neptune")
+type <- c("Terrestrial planet",
+          "Terrestrial planet",
+          "Terrestrial planet",
+          "Terrestrial planet", "Gas giant",
+          "Gas giant", "Gas giant", "Gas giant")
+diameter <- c(0.382, 0.949, 1, 0.532,
+              11.209, 9.449, 4.007, 3.883)
+rotation <- c(58.64, -243.02, 1, 1.03,
+              0.41, 0.43, -0.72, 0.67)
+rings <- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+# Create a data frame from the vectors
+planets_df <- data.frame(name, type, diameter, rotation, rings)
+planets_df
+
+# Check the structure of planets_df
+str(planets_df)
+
+#selection of data frame elements
+# my_df[1,2] selects the value at the first row and second column
+# my_df[1:3,2:4] selects rows 1, 2, 3 and columns 2, 3, 4 in my_df
+
+# The planets_df data frame from the previous exercise is pre-loaded
+planets_df
+# Print out diameter of Mercury (row 1, column 3)
+planets_df[1,3]
+
+# Print out data for Mars (entire fourth row)
+planets_df[4,]
+
+## selecting elements using variable name
+# planets_df[1:3,"type"]
+
+# The planets_df data frame from the previous exercise is pre-loaded
+planets_df
+# Select first 5 values of diameter column
+planets_df[1:5, "diameter"]
+
+# selecting using name of the column(for entire column)
+# planets_df is pre-loaded in your workspace
+planets_df
+# Select the rings variable from planets_df
+rings_vector <- planets_df$rings
+
+# Print out rings_vector(has boolean values)
+rings_vector
+
+# planets_df and rings_vector are pre-loaded in your workspace
+planets_df
+rings_vector
+# Adapt the code to select all columns for planets with rings as TRUE
+planets_df[rings_vector,]
+
+# selecting based on condition(performing above operation using subset())
+# suset() function helps to select data based ono certain conditions
+# subset(my_df, subset = some_condition)
+# subset(planets_df, subset = rings)
+
+# planets_df is pre-loaded in your workspace
+planets_df
+# Select planets with diameter < 1
+subset(planets_df, subset = diameter<1)
+
+## sorting
+# order() function gives the rank of the element when applied to a vector
+a <- c(100, 10, 1000)
+order(a)
+[1] 2 1 3
+
+# output of order function can be used to reshuffle values in vector
+a[order(a)]
+[1]   10  100 1000
+
+# Play around with the order function in the console
+test <- c(500, 300, 800, 1500)
+order(test)
+test[order(test)]
+
+test[order(test)]
+[1]  300  500  800 1500
+
+
+#sorting your data
+# planets_df is pre-loaded in your workspace
+planets_df
+# Use order() to create positions and order by diameter
+positions <- order(planets_df$diameter)
+
+# Use positions to sort planets_df
+planets_df[positions,]
+
+
+# ----------------- LISTS ------------------------
+# Vectors (one dimensional array): can hold numeric, character or logical values.
+#   The elements in a vector all have the same data type.
+# Matrices (two dimensional array): can hold numeric, character or logical values.
+#  The elements in a matrix all have the same data type.
+# Data frames (two-dimensional objects): can hold numeric, character or logical values.
+#   Within a column all elements have the same data type,
+#   but different columns can be of different data type.
+# Lists -> A list in R allows you to gather a variety of objects under one name
+#   (that is, the name of the list) in an ordered way.
+#   These objects can be matrices, vectors, data frames, even other lists, etc.
+#   It is not even required that these objects are related to each other in any way.
+#   you can store practically any piece of information in it!
+
+# create list using list() function
+# my_list <- list(comp1, comp2 ...)
+# The arguments to the list function are the list components.
+
+# Vector with numerics from 1 up to 10
+my_vector <- 1:10
+
+# Matrix with numerics from 1 up to 9
+my_matrix <- matrix(1:9, ncol = 3)
+
+# First 10 elements of the built-in data frame mtcars
+my_df <- mtcars[1:10,]
+
+# Construct list with these different elements:
+my_list <- list(my_vector, my_matrix, my_df)
+
+## create name for a list
+# naming while creating a list
+# my_list <- list(name1 = your_comp1,
+#                name2 = your_comp2)
+
+# naming after creating a list
+# my_list <- list(your_comp1, your_comp2)
+# names(my_list) <- c("name1", "name2")
+
+# Adapt list() call to give the components names
+my_list <- list(vec=my_vector, mat=my_matrix, df=my_df)
+
+# Print out my_list
+my_list
+
+---------------------------------
+#output
+$vec
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+$mat
+     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9
+
+$df
+                   mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+
+----------------------------
+# The variables mov, act and rev are available
+mov
+act
+rev
+# Finish the code to build shining_list
+shining_list <- list(moviename = mov, actors = act, reviews= rev)
+shining_list
+
+#output
+------------------------
+$moviename
+[1] "The Shining"
+
+$actors
+[1] "Jack Nicholson"   "Shelley Duvall"   "Danny Lloyd"      "Scatman Crothers"
+[5] "Barry Nelson"
+
+$reviews
+  scores sources                                              comments
+1    4.5   IMDb1                     Best Horror Film I Have Ever Seen
+2    4.0   IMDb2 A truly brilliant and scary film from Stanley Kubrick
+3    5.0   IMDb3                 A masterpiece of psychological horror
+
+
+# selecting an element from the list
+# to select elements from the list use double brackets [[]]
+# NOTE :- In vector, we use single bracket to select element from the list
+shining_list[[1]]
+
+# we can also select using the names of the components inside the [[]]
+shining_list[["reviews"]]
+
+# also, we can select the elements using name and dollar sign
+shining_list$reviews
+
+# selecting specific elements from the vector inside the list
+shining_list[["actors"]][1]
+
+# shining_list is already pre-loaded in the workspace
+shining_list
+# Print out the vector representing the actors
+shining_list[["actors"]]
+
+# Print the second element of the vector representing the actors
+shining_list[["actors"]][1]
+
+#output
+----------------------------
+shining_list[["actors"]]
+[1] "Jack Nicholson"   "Shelley Duvall"   "Danny Lloyd"      "Scatman Crothers"
+[5] "Barry Nelson"
+shining_list[["actors"]][1]
+[1] "Jack Nicholson"
+--------------------------
+
+
+
+# exercise
+
+# - Create two vectors, called scores and comments,
+#   that contain the information from the reviews shown in the table.
+# - Find the average of the scores vector and save it as avg_review.
+# - Combine the scores and comments vectors into a data frame called reviews_df.
+# - Create a list, called departed_list, that contains the movie_title,
+#    movie_actors, reviews data frame as reviews_df,
+#    and the average review score as avg_review, and print it out.
+
+
+# Use the table from the exercise to define the comments and scores vectors
+scores <- c(4.6, 5, 4.8, 5, 4.2)
+comments <- c("I would watch it again", "Amazing!", "I liked it", "One of the best movies", "Fascinating plot")
+
+# Save the average of the scores vector as avg_review
+avg_review <- mean(scores)
+
+# Combine scores and comments into the reviews_df data frame
+reviews_df <- data.frame(scores, comments)
+reviews_df
+
+# Create and print out a list, called departed_list
+departed_list <- list(movie_title, movie_actors, reviews_df, avg_review)
+departed_list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
